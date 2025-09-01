@@ -57,4 +57,9 @@ class AuthController extends Controller
             return "login failed";
         }
     }
+
+    public function LogoutUser(){
+        session()->flush(); 
+        return "logout successful";
+    }
 }
