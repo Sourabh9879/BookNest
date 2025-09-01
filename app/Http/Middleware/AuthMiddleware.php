@@ -15,6 +15,10 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+         if ($request->session()->has('user_id') && $request->session()->get('role') === 'user') {
+            return $next($request);
+        }
+
+        return redirect()->route('login')->with('failed','You Must log in First');
     }
 }

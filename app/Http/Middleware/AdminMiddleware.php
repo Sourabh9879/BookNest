@@ -15,6 +15,10 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+     if ($request->session()->get('role') === 'admin') {
+            return $next($request);
+        }
+
+        return redirect('/')->with('failed','You Must log in First');
     }
 }
