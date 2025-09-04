@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book', function (Blueprint $table) {
-            $table->string('title');
-            $table->string('author');
-            $table->string('language')->nullable();
-            // Foreign Key
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')
-                  ->references('id')->on('categories')
-                  ->onDelete('cascade'); // if category deleted, its books are deleted
+      Schema::create('books', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('author');
+    $table->text('description')->nullable();
+    $table->string('language')->nullable();
+    $table->string('category');
+    $table->integer('stock')->default(0);
+    $table->timestamps();
+});
 
-            $table->integer('stock')->default(0);
-            $table->timestamps();
-        });
     }
 
     /**
