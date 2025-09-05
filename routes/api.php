@@ -14,6 +14,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::controller(BookController::class)->group(function () {
-
     Route::post('/storebook', 'store')->name('storebook');
+    Route::put('/books/{id}', 'update')->name('updatebook');
 });
